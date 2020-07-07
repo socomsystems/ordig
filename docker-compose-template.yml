@@ -6,7 +6,7 @@ services:
     working_dir: /home/node/app
     command: bash -c 'while true; do npm start; done'
     environment:
-      GU_NAME: {{GU_NAME}}
+      GU_NAME: {{GU_ENDPOINT}}
       WG_NAME: {{WG_NAME}}
       WG_IP: {{WG_IP}}
       WG_POOL: {{WG_POOL}}
