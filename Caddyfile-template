@@ -3,3 +3,9 @@
 reverse_proxy /api/* api:9000
 root * /var/www/html/
 file_server
+
+{{GU_NAME}}
+
+reverse_proxy /* guacamole:8080/guacamole
+transparent
+websocket
