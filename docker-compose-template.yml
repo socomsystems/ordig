@@ -1,33 +1,5 @@
 version: '3.5'
 services:
-  guacamole:
-    image: guacamole/guacamole:latest
-    depends_on:
-      - guacd
-      - guacdb
-    environment:
-      GUACD_HOSTNAME: guacd
-      POSTGRES_HOSTNAME: guacdb
-      POSTGRES_USER: guac
-      POSTGRES_DATABASE: guac
-      POSTGRES_PASSWORD: {{DB_PASS}} 
-    restart: unless-stopped
-
-  guacd:
-    image: guacamole/guacd:latest
-    restart: unless-stopped
-
-  guacdb:
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: guac
-      POSTGRES_USER: guac
-      POSTGRES_PASSWORD: {{DB_PASS}} 
-    volumes:
-      - ./db:/var/lib/postgresql/data
-      - ./initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
-    restart: unless-stopped
-
   api:
     image: nickadam/ordig:1.0
     user: node
