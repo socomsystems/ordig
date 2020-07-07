@@ -10,6 +10,12 @@ fi
 WG_SERVER_API_KEY="$(tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=64 count=1 2>/dev/null)"
 WG_CLIENT_API_KEY="$(tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=64 count=1 2>/dev/null)"
 echo "Press enter to accept [defaults]"
+echo -n "cyfrScreens web address [new.cyfr.tel]: "
+read i
+GU_NAME=${i:=new.cyfr.tel}
+echo -n "Database password [9natch]: "
+read i
+DB_PASS=${i:=9natch}
 echo -n "Interface name for WireGuard [wg0]: "
 read i
 WG_NAME=${i:=wg0}
@@ -85,6 +91,8 @@ cd /opt/ordig
 
 # create docker-compose
 echo '{
+  "DB_PASS": "'"${DB_PASS}"'",
+  "GU_NAME": "'"${GU_NAME}"'",
   "WG_NAME": "'"${WG_NAME}"'",
   "WG_IP": "'"${WG_IP}"'",
   "WG_POOL": "'"${WG_POOL}"'",
