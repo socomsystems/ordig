@@ -10,12 +10,6 @@ fi
 WG_SERVER_API_KEY="$(tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=64 count=1 2>/dev/null)"
 WG_CLIENT_API_KEY="$(tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=64 count=1 2>/dev/null)"
 echo "Press enter to accept [defaults]"
-echo -n "cyfrScreens web address [new.dommain.tld]: "
-read i
-GU_NAME=${i:=new.cyfr.tel}
-echo -n "Database password [aPazzWrd]: "
-read i
-DB_PASS=${i:=aPazzWrd}
 echo -n "Interface name for WireGuard [wg0]: "
 read i
 WG_NAME=${i:=wg0}
@@ -38,6 +32,9 @@ WG_PORT=${i:=51820}
 echo -n "Server name [wg.example.com]: "
 read i
 WG_ENDPOINT=${i:=wg.example.com}
+echo -n "Guac web address [sub.domain.tld]: "
+read i
+GU_ENDPOINT=${i:=sub.domain.tld}
 
 # Docker should be installed
 if ! which docker > /dev/null
