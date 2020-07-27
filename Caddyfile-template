@@ -1,13 +1,14 @@
-https://{{WG_ENDPOINT}} {
-    reverse_proxy /api/* api:9000 {
-       root * /var/www/html/ 
-        file_server
+{{WG_ENDPOINT}} {
+#    reverse_proxy /api/* api:9000 {
+   reverse_proxy /api/* localhost:2019
+   root * /var/www/html/ 
+file_server 
+}
+
+{{GU_ENDPOINT}} {
+    redir / /guacamole/ 308
+    reverse_proxy {{GU_HOST}}:8080 {
+        flush_interval -1
     }
 }
 
-https://{{GU_ENDPOINT}} {
-    reverse_proxy / localhost:8080/guacamole {
-        websocket
-        transparent
-    }
-}
